@@ -35,6 +35,7 @@ import {
   Megaphone,
   CheckCircle2,
   IndianRupee,
+  Globe,
 } from 'lucide-react';
 import {
   BarChart,
@@ -48,6 +49,7 @@ import {
 import VehicleEnforcementPanel from '@/components/VehicleEnforcementPanel';
 import IndustrialAQIPanel from '@/components/IndustrialAQIPanel';
 import PollutionSourceAttribution from '@/components/PollutionSourceAttribution';
+import { useI18n, type Lang } from '@/hooks/useI18n';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { Slider } from '@/components/ui/slider';
@@ -1522,6 +1524,7 @@ const AeroForensicsPage: React.FC = () => {
   const [archiveOpen, setArchiveOpen] = useState(false);
   const [alerts, setAlerts] = useState<AnomalyAlert[]>(INITIAL_ALERTS);
   const [rightTab, setRightTab] = useState<'forensics' | 'vehicle' | 'industrial' | 'attribution'>('forensics');
+  const { lang, setLang } = useI18n();
   const timeoutRefs = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   const clearAllTimeouts = useCallback(() => {
@@ -1663,6 +1666,22 @@ const AeroForensicsPage: React.FC = () => {
             <span className="hidden sm:inline">Trigger Live Anomaly</span>
             <span className="sm:hidden">Trigger</span>
           </Button>
+
+          {/* Language Switcher */}
+          <Select
+            value={lang}
+            onValueChange={(v) => setLang(v as Lang)}
+          >
+            <SelectTrigger className="shrink-0 h-9 w-[100px] text-[11px] border-border bg-card/60">
+              <Globe className="w-3.5 h-3.5 mr-1" />
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="en">English</SelectItem>
+              <SelectItem value="hi">Hindi</SelectItem>
+              <SelectItem value="kn">Kannada</SelectItem>
+            </SelectContent>
+          </Select>
 
           <Link
             to="/citizen"
