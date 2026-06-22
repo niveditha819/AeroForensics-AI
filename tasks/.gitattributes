@@ -1,0 +1,12 @@
+# GitHub Linguist overrides
+*.tsx linguist-language=TypeScript
+*.ts linguist-language=TypeScript
+*.sql linguist-language=SQL
+
+# Ensure GitHub renders large files
+*.tsx text eol=lf
+*.ts text eol=lf
+*.css text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.sql text eol=lf
